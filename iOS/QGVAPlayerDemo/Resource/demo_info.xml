@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MP4Box dump trace-->
+<IsoMediaFile xmlns="urn:mpeg:isobmff:schema:file:2016" Name="demo.mp4">
+<FileTypeBox Size="32" Type="ftyp" Specification="p12" Container="file otyp" MajorBrand="isom" MinorVersion="512">
+<BrandEntry AlternateBrand="isom"/>
+<BrandEntry AlternateBrand="iso2"/>
+<BrandEntry AlternateBrand="avc1"/>
+<BrandEntry AlternateBrand="mp41"/>
+</FileTypeBox>
+<!--WARNING: Unknown Top-level Box Found -->
+<UnknownBox Size="153" Type="vapc" Specification="unknown" Container="unknown" >
+</UnknownBox>
+<FreeSpaceBox Size="8" Type="free" Specification="p12" Container="*" dataSize="0">
+</FreeSpaceBox>
+<MovieBox Size="1106" Type="moov" Specification="p12" Container="file cmvd" >
+<MovieHeaderBox Size="108" Type="mvhd" Version="0" Flags="0" Specification="p12" Container="moov" CreationTime="0" ModificationTime="0" TimeScale="1000" Duration="3200" NextTrackID="2">
+</MovieHeaderBox>
+<TrackBox Size="892" Type="trak" Specification="p12" Container="moov" >
+<TrackHeaderBox Size="92" Type="tkhd" Version="0" Flags="3" Specification="p12" Container="trak" CreationTime="0" ModificationTime="0" TrackID="1" Duration="3200" Width="752.00" Height="880.00">
+<Matrix m11="0x00010000" m12="0x00000000" m13="0x00000000" m21="0x00000000" m22="0x00010000" m23="0x00000000" m31="0x00000000" m32="0x00000000" m33="0x40000000"/>
+</TrackHeaderBox>
+<EditBox Size="36" Type="edts" Specification="p12" Container="trak" >
+<EditListBox Size="28" Type="elst" Version="0" Flags="0" Specification="p12" Container="edts" EntryCount="1">
+<EditListEntry Duration="3200" MediaTime="0" MediaRate="1"/>
+</EditListBox>
+</EditBox>
+<MediaBox Size="756" Type="mdia" Specification="p12" Container="trak" >
+<MediaHeaderBox Size="32" Type="mdhd" Version="0" Flags="0" Specification="p12" Container="mdia" CreationTime="0" ModificationTime="0" TimeScale="12800" Duration="40960" LanguageCode="und">
+</MediaHeaderBox>
+<HandlerBox Size="45" Type="hdlr" Version="0" Flags="0" Specification="p12" Container="mdia meta minf" hdlrType="vide" Name="VideoHandler" reserved1="0" reserved2="data:application/octet-string,000000000000000000000000">
+</HandlerBox>
+<MediaInformationBox Size="671" Type="minf" Specification="p12" Container="mdia" >
+<VideoMediaHeaderBox Size="20" Type="vmhd" Version="0" Flags="1" Specification="p12" Container="minf" >
+</VideoMediaHeaderBox>
+<DataInformationBox Size="36" Type="dinf" Specification="p12" Container="minf meta" >
+<DataReferenceBox Size="28" Type="dref" Version="0" Flags="0" Specification="p12" Container="dinf" >
+<URLDataEntryBox Size="12" Type="url " Version="0" Flags="1" Specification="p12" Container="dref" >
+<!--Data is contained in the movie file-->
+</URLDataEntryBox>
+</DataReferenceBox>
+</DataInformationBox>
+<SampleTableBox Size="607" Type="stbl" Specification="p12" Container="minf" >
+<SampleDescriptionBox Size="147" Type="stsd" Version="0" Flags="0" Specification="p12" Container="stbl" >
+<AVCSampleEntryBox Size="131" Type="avc1" Specification="p15" Container="stsd"  DataReferenceIndex="1" Width="752" Height="880" XDPI="4718592" YDPI="4718592" BitDepth="24">
+<AVCConfigurationBox Size="45" Type="avcC" Specification="p15" Container="avc1 avc2 avc3 avc4 encv resv ipco dva1 dvav" >
+<AVCDecoderConfigurationRecord configurationVersion="1" AVCProfileIndication="66" profile_compatibility="192" AVCLevelIndication="30" nal_unit_size="4">
+<SequenceParameterSet size="22" content="data:application/octet-string,6742C01ED900BC1BE840000003004000000C83C58B92"/>
+<PictureParameterSet size="4" content="data:application/octet-string,68CB8CB2"/>
+</AVCDecoderConfigurationRecord>
+</AVCConfigurationBox>
+</AVCSampleEntryBox>
+</SampleDescriptionBox>
+<TimeToSampleBox Size="24" Type="stts" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="1">
+<TimeToSampleEntry SampleDelta="512" SampleCount="80"/>
+<!-- counted 80 samples in STTS entries -->
+</TimeToSampleBox>
+<SyncSampleBox Size="24" Type="stss" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="2">
+<SyncSampleEntry sampleNumber="1"/>
+<SyncSampleEntry sampleNumber="30"/>
+</SyncSampleBox>
+<SampleToChunkBox Size="40" Type="stsc" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="2">
+<SampleToChunkEntry FirstChunk="1" SamplesPerChunk="38" SampleDescriptionIndex="1"/>
+<SampleToChunkEntry FirstChunk="2" SamplesPerChunk="42" SampleDescriptionIndex="1"/>
+<!-- counted 80 samples in STSC entries (could be less than sample count) -->
+</SampleToChunkBox>
+<SampleSizeBox Size="340" Type="stsz" Version="0" Flags="0" Specification="p12" Container="stbl" SampleCount="80">
+<SampleSizeEntry Size="2610"/>
+<SampleSizeEntry Size="126"/>
+<SampleSizeEntry Size="897"/>
+<SampleSizeEntry Size="2266"/>
+<SampleSizeEntry Size="4413"/>
+<SampleSizeEntry Size="5316"/>
+<SampleSizeEntry Size="6435"/>
+<SampleSizeEntry Size="7706"/>
+<SampleSizeEntry Size="8789"/>
+<SampleSizeEntry Size="11069"/>
+<SampleSizeEntry Size="15511"/>
+<SampleSizeEntry Size="4642"/>
+<SampleSizeEntry Size="4680"/>
+<SampleSizeEntry Size="4012"/>
+<SampleSizeEntry Size="4295"/>
+<SampleSizeEntry Size="4752"/>
+<SampleSizeEntry Size="8089"/>
+<SampleSizeEntry Size="9309"/>
+<SampleSizeEntry Size="8990"/>
+<SampleSizeEntry Size="9027"/>
+<SampleSizeEntry Size="13851"/>
+<SampleSizeEntry Size="15801"/>
+<SampleSizeEntry Size="21550"/>
+<SampleSizeEntry Size="22217"/>
+<SampleSizeEntry Size="44408"/>
+<SampleSizeEntry Size="60094"/>
+<SampleSizeEntry Size="74345"/>
+<SampleSizeEntry Size="73205"/>
+<SampleSizeEntry Size="67651"/>
+<SampleSizeEntry Size="46291"/>
+<SampleSizeEntry Size="52033"/>
+<SampleSizeEntry Size="75890"/>
+<SampleSizeEntry Size="83683"/>
+<SampleSizeEntry Size="72529"/>
+<SampleSizeEntry Size="55871"/>
+<SampleSizeEntry Size="50689"/>
+<SampleSizeEntry Size="46248"/>
+<SampleSizeEntry Size="43782"/>
+<SampleSizeEntry Size="43912"/>
+<SampleSizeEntry Size="38400"/>
+<SampleSizeEntry Size="37497"/>
+<SampleSizeEntry Size="32971"/>
+<SampleSizeEntry Size="33548"/>
+<SampleSizeEntry Size="31117"/>
+<SampleSizeEntry Size="26944"/>
+<SampleSizeEntry Size="23671"/>
+<SampleSizeEntry Size="20872"/>
+<SampleSizeEntry Size="15652"/>
+<SampleSizeEntry Size="14394"/>
+<SampleSizeEntry Size="11472"/>
+<SampleSizeEntry Size="10102"/>
+<SampleSizeEntry Size="6939"/>
+<SampleSizeEntry Size="7768"/>
+<SampleSizeEntry Size="7042"/>
+<SampleSizeEntry Size="6300"/>
+<SampleSizeEntry Size="4535"/>
+<SampleSizeEntry Size="4555"/>
+<SampleSizeEntry Size="4011"/>
+<SampleSizeEntry Size="3720"/>
+<SampleSizeEntry Size="3147"/>
+<SampleSizeEntry Size="3254"/>
+<SampleSizeEntry Size="3135"/>
+<SampleSizeEntry Size="2831"/>
+<SampleSizeEntry Size="2092"/>
+<SampleSizeEntry Size="2435"/>
+<SampleSizeEntry Size="2550"/>
+<SampleSizeEntry Size="2541"/>
+<SampleSizeEntry Size="2075"/>
+<SampleSizeEntry Size="2557"/>
+<SampleSizeEntry Size="2453"/>
+<SampleSizeEntry Size="2448"/>
+<SampleSizeEntry Size="8177"/>
+<SampleSizeEntry Size="8869"/>
+<SampleSizeEntry Size="8576"/>
+<SampleSizeEntry Size="8214"/>
+<SampleSizeEntry Size="7630"/>
+<SampleSizeEntry Size="6401"/>
+<SampleSizeEntry Size="5069"/>
+<SampleSizeEntry Size="3058"/>
+<SampleSizeEntry Size="1752"/>
+</SampleSizeBox>
+<ChunkOffsetBox Size="24" Type="stco" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="2">
+<ChunkEntry offset="1307"/>
+<ChunkEntry offset="1044379"/>
+</ChunkOffsetBox>
+</SampleTableBox>
+</MediaInformationBox>
+</MediaBox>
+</TrackBox>
+<UserDataBox Size="98" Type="udta" Specification="p12" Container="moov trak moof traf" >
+<MetaBox Size="90" Type="meta" Version="0" Flags="0" Specification="p12" Container="file moov trak moof traf udta" >
+<HandlerBox Size="33" Type="hdlr" Version="0" Flags="0" Specification="p12" Container="mdia meta minf" hdlrType="mdir" Name="" reserved1="0" reserved2="data:application/octet-string,6170706C0000000000000000">
+</HandlerBox>
+<ItemListBox Size="45" Type="ilst" Specification="apple" Container="meta" >
+<tool Size="37" Type="A9too" Specification="apple" Container="ilst data"  value="Lavf58.29.100" >
+<data Size="29" Type="data" Version="0" Flags="1" Specification="apple" Container="ilst *" >
+</data>
+</tool>
+</ItemListBox>
+</MetaBox>
+</UserDataBox>
+</MovieBox>
+<MediaDataBox Size="1517766" Type="mdat" Specification="p12" Container="file" dataSize="1517758">
+</MediaDataBox>
+</IsoMediaFile>

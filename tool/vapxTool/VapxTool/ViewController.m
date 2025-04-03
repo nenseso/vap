@@ -16,8 +16,9 @@
 #import "VapxProcessor.h"
 #import "VapMergeInfoView.h"
 #import "VapProgressHUD.h"
+#import "DragDropTextField.h"
 
-@interface ViewController () <VapMergeInfoViewDelegate>
+@interface ViewController () <VapMergeInfoViewDelegate, DragDropTextFieldDelegate>
 
 @property (nonatomic, strong) VapxFileHelper *fileHelper;
 @property (nonatomic, strong) NSMutableArray<VapMergeInfoView *> *mergeInfoViews;
@@ -35,6 +36,12 @@
 @property (weak) IBOutlet NSTextField *addMergeInfoLabel;
 @property (weak) IBOutlet NSButton *uploadAudioButton;
 
+@property (weak) IBOutlet DragDropTextField *videoDragDropTextField;
+
+@property (weak) IBOutlet DragDropTextField *audioDragDropTextfied;
+
+//videoDragDropTextField
+//audioDragDropTextField
 @property (nonatomic, assign) BOOL hasUploadedVideoFrames;
 @property (nonatomic, strong) NSString *audioPath;
 
@@ -188,6 +195,7 @@
     openPanel.canChooseFiles = YES;
     NSModalResponse res = [openPanel runModal];
     if (res == NSModalResponseOK) {
+        NSLog(@"[ViewController] openPanel.URLs:%@",openPanel.URLs);
         [self.fileHelper saveUploadedVideoFrames:openPanel.URLs];
         self.uploadFramesTipsLabel.stringValue = [NSString stringWithFormat:@"成功上传%@个文件",@(openPanel.URLs.count)];
         [self.uploadFramesTipsLabel sizeToFit];
@@ -247,6 +255,8 @@
     self.generateButton.layer.zPosition = 1000;
     [self.generateButton.cell setBackgroundColor:[NSColor colorWithRed:299/255.0 green:133/255.0 blue:61/255.0 alpha:1]];
     
+    self.videoDragDropTextField.dragDelegate = self;
+    self.audioDragDropTextfied.dragDelegate = self;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -302,5 +312,45 @@
     
     return nil;
 }
+
+- (void)uploadVideoFrames:(NSURL *)path {
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path.path error:nil];
+    NSMutableArray *filePaths = [NSMutableArray array];
+    for (NSString *fileName in paths) {
+        NSString *filePath = [path.path stringByAppendingPathComponent:fileName];
+        BOOL isDir = NO;
+        BOOL isFile = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
+        if (isFile && !isDir) {
+            [filePaths addObject:[NSURL fileURLWithPath:filePath]];
+        }
+    }
+    [filePaths sortUsingComparator:^NSComparisonResult(NSURL *obj1, NSURL *obj2) {
+        return [obj1.lastPathComponent compare:obj2.lastPathComponent];
+    }];
+    NSLog(@"[ViewController] filePaths.URLs:%@",filePaths);
+    [self.fileHelper saveUploadedVideoFrames:filePaths];
+    
+    self.uploadFramesTipsLabel.stringValue = [NSString stringWithFormat:@"成功上传%@个文件",@(filePaths.count)];
+    [self.uploadFramesTipsLabel sizeToFit];
+    self.uploadFramesTipsLabel.hidden = NO;
+    self.hasUploadedVideoFrames = YES;
+}
+
+- (void)uploadAudioFrames:(NSURL *)path {
+    NSString *audioPath = [self.fileHelper saveUploadedAudioFile:path];
+    self.audioPath = audioPath;
+    self.uploadAudioButton.title = @"上传成功";
+}
+
+#pragma mark - DragDropTextFieldDelegate
+- (void)dragDropTextField:(DragDropTextField *)textField didReceiveURL:(NSURL *)url {
+    if (textField == self.videoDragDropTextField) {
+        [self uploadVideoFrames:url];
+    } else if (textField == self.audioDragDropTextfied) {
+        [self uploadAudioFrames:url];
+    }
+
+}
+
 
 @end

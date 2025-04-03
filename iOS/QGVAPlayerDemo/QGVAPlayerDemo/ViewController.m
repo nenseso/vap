@@ -130,6 +130,7 @@ void qg_VAP_Logger_handler(VAPLogLevel level, const char* file, int line, const 
             [mp4View resumeHWDMP4];
         });
     });
+
 }
 
 /// 使用WrapView，支持ContentMode
@@ -140,7 +141,8 @@ void qg_VAP_Logger_handler(VAPLogLevel level, const char* file, int line, const 
     wrapView.contentMode = QGVAPWrapViewContentModeAspectFit;
     wrapView.autoDestoryAfterFinish = YES;
     [self.view addSubview:wrapView];
-    NSString *resPath = [NSString stringWithFormat:@"%@/Resource/vap.mp4", [[NSBundle mainBundle] resourcePath]];
+//    NSString *resPath = [NSString stringWithFormat:@"%@/Resource/vap.mp4", [[NSBundle mainBundle] resourcePath]];
+    NSString *resPath = [NSString stringWithFormat:@"%@/Resource/video.mp4", [[NSBundle mainBundle] resourcePath]];
     [wrapView setMute:YES];
     [wrapView playHWDMP4:resPath repeatCount:-1 delegate:self];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doNothingonImageviewTap:)];
@@ -194,6 +196,7 @@ void qg_VAP_Logger_handler(VAPLogLevel level, const char* file, int line, const 
                                 @"[textAnchor]" : @"我是主播名",
                                 @"[textUser]" : @"我是用户名😂😂",};
     return extraInfo[tag];
+    
 }
 
 //provide image for url from tag content

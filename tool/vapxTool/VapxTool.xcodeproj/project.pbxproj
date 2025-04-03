@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B9749942D9E224200F7FC9A /* DragDropTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9749932D9E224200F7FC9A /* DragDropTextField.m */; };
 		63550C8F2320017900D4280A /* ffmpeg in Resources */ = {isa = PBXBuildFile; fileRef = 63550C8E2320017900D4280A /* ffmpeg */; };
 		63550C922320A98A00D4280A /* VapxMP4Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 63550C912320A98A00D4280A /* VapxMP4Decoder.m */; };
 		63550C962320B70700D4280A /* QGVAPConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63550C952320B70600D4280A /* QGVAPConfigModel.m */; };
@@ -84,6 +85,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B9749922D9E224200F7FC9A /* DragDropTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDropTextField.h; sourceTree = "<group>"; };
+		4B9749932D9E224200F7FC9A /* DragDropTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDropTextField.m; sourceTree = "<group>"; };
 		63550C8E2320017900D4280A /* ffmpeg */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = ffmpeg; sourceTree = "<group>"; };
 		63550C902320A98A00D4280A /* VapxMP4Decoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VapxMP4Decoder.h; sourceTree = "<group>"; };
 		63550C912320A98A00D4280A /* VapxMP4Decoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VapxMP4Decoder.m; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				63AAEDEF232781C3004CAC1F /* VapMergeInfoView.m */,
 				C17B268B2500BF49008ED012 /* VapProgressHUD.h */,
 				C17B268C2500BF49008ED012 /* VapProgressHUD.m */,
+				4B9749922D9E224200F7FC9A /* DragDropTextField.h */,
+				4B9749932D9E224200F7FC9A /* DragDropTextField.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				63550D8A2322025900D4280A /* VapxMaskInfoGenerator.m in Sources */,
 				63AAEDE923274F61004CAC1F /* VapxFileHelper.m in Sources */,
 				63550D8523213BE400D4280A /* VapxMp4Editor.m in Sources */,
+				4B9749942D9E224200F7FC9A /* DragDropTextField.m in Sources */,
 				63AAEDF0232781C3004CAC1F /* VapMergeInfoView.m in Sources */,
 				63550C9C2320B88E00D4280A /* NSDictionary+HWDUtil.m in Sources */,
 				63550C9B2320B88E00D4280A /* NSArray+HWDUtil.m in Sources */,
@@ -672,9 +678,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VapxTool/VapxTool.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6W55574XBS;
+				DEVELOPMENT_TEAM = H4TRZ54TGN;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = VapxTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -685,7 +693,7 @@
 					"$(PROJECT_DIR)/frameworks/Bento4-SDK-1-5-1-628/bin",
 					"$(PROJECT_DIR)/frameworks/Bento4-SDK-1-5-1-628/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tencent.VapxTool;
+				PRODUCT_BUNDLE_IDENTIFIER = tencent.VapxTool.langhua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -695,9 +703,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = VapxTool/VapxTool.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6W55574XBS;
+				DEVELOPMENT_TEAM = H4TRZ54TGN;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = VapxTool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -708,7 +718,7 @@
 					"$(PROJECT_DIR)/frameworks/Bento4-SDK-1-5-1-628/bin",
 					"$(PROJECT_DIR)/frameworks/Bento4-SDK-1-5-1-628/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = tencent.VapxTool;
+				PRODUCT_BUNDLE_IDENTIFIER = tencent.VapxTool.langhua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

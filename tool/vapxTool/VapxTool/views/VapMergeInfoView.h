@@ -15,6 +15,7 @@
 #import <Cocoa/Cocoa.h>
 #import "VapxFileHelper.h"
 
+
 @class VapMergeInfoView;
 @protocol VapMergeInfoViewDelegate <NSObject>
 

@@ -14,3 +14,6 @@ npm-debug.log
 
 #mac cache 
 .DS_Store
+
+iOS/QGVAPlayerDemo/Pods
+tool/vapx_demo/png/output

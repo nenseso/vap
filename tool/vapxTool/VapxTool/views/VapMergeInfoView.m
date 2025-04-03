@@ -13,8 +13,9 @@
 // limitations under the License.
 
 #import "VapMergeInfoView.h"
+#import "DragDropTextField.h"
 
-@interface VapMergeInfoView () {
+@interface VapMergeInfoView ()<DragDropTextFieldDelegate> {
     
     NSTextField *_tagHintLabel;
     NSTextField *_typeLabel;
@@ -26,6 +27,7 @@
     NSTextField *_fontHintLabel;
     NSButton *_closeButton;
     NSInteger _index;
+    DragDropTextField *_dragDropTextField;
 }
 
 @end
@@ -132,6 +134,10 @@
     [_maskUploadButotn setAction:@selector(onUploadMaskButtonClicked:)];
     [self addSubview:_maskUploadButotn];
     
+    _dragDropTextField = [DragDropTextField new];
+    _dragDropTextField.dragDelegate = self;
+    [self addSubview:_dragDropTextField];
+    
     _colorHintLabel = [NSTextField new];
     _colorHintLabel.drawsBackground = NO;
     _colorHintLabel.stringValue = @"颜色:";
@@ -193,6 +199,10 @@
     
     _maskHintLabel.frame = NSMakeRect(0, CGRectGetMinY(_tagHintLabel.frame)-10-CGRectGetHeight(_maskHintLabel.frame), CGRectGetWidth(_maskHintLabel.frame), CGRectGetHeight(_maskHintLabel.frame));
     _maskUploadButotn.frame = NSMakeRect(CGRectGetMaxX(_maskHintLabel.frame), CGRectGetMaxY(_maskHintLabel.frame)-CGRectGetHeight(_maskHintLabel.frame)/2.0-CGRectGetHeight(_maskUploadButotn.frame)/2.0, _maskUploadButotn.frame.size.width, _maskHintLabel.frame.size.height);
+    
+//    _dragDropTextField.frame = NSMakeRect(CGRectGetMaxX(_maskUploadButotn.frame)+5, CGRectGetMaxY(_maskHintLabel.frame)-CGRectGetHeight(_maskHintLabel.frame)/2.0-CGRectGetHeight(_dragDropTextField.frame)/2.0, 500, height);
+    // _dragDropTextField放在_maskUploadButotn的下面
+    _dragDropTextField.frame = NSMakeRect(CGRectGetMinX(_maskUploadButotn.frame), CGRectGetMinY(_maskUploadButotn.frame)-CGRectGetHeight(_dragDropTextField.frame)-5, 500, height);
     
     _colorHintLabel.frame = NSMakeRect(CGRectGetMaxX(_maskUploadButotn.frame), CGRectGetMaxY(_maskHintLabel.frame)-CGRectGetHeight(_maskHintLabel.frame)/2.0-CGRectGetHeight(_colorHintLabel.frame)/2.0, _colorHintLabel.frame.size.width, _colorHintLabel.frame.size.height);
     _colorLabel.frame = NSMakeRect(CGRectGetMaxX(_colorHintLabel.frame), CGRectGetMaxY(_maskHintLabel.frame)-CGRectGetHeight(_maskHintLabel.frame)/2.0-CGRectGetHeight(_colorLabel.frame)/2.0, _colorLabel.frame.size.width, _colorLabel.frame.size.height);
@@ -265,5 +275,26 @@
         [self.delegate didClickAtCloseButton:self];
     }
 }
+
+#pragma mark - DragDropTextFieldDelegate
+- (void)dragDropTextField:(DragDropTextField *)textField didReceiveURL:(NSURL *)url {
+    NSArray *paths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:url.path error:nil];
+    NSMutableArray *filePaths = [NSMutableArray array];
+    for (NSString *fileName in paths) {
+        NSString *filePath = [url.path stringByAppendingPathComponent:fileName];
+        BOOL isDir = NO;
+        BOOL isFile = [[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDir];
+        if (isFile && !isDir) {
+            [filePaths addObject:[NSURL fileURLWithPath:filePath]];
+        }
+    }
+    [filePaths sortUsingComparator:^NSComparisonResult(NSURL *obj1, NSURL *obj2) {
+        return [obj1.lastPathComponent compare:obj2.lastPathComponent];
+    }];
+    NSLog(@"[ViewController] filePaths.URLs:%@",filePaths);
+    self.maskPath = [self.fileHelper saveUploadedMasks:filePaths identifier:[NSString stringWithFormat:@"%p",self]];
+    self.maskUploadButotn.title = [NSString stringWithFormat:@"%@个文件",@(filePaths.count)];
+}
+
 
 @end

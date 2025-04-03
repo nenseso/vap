@@ -50,6 +50,27 @@
     }
     self.hasValidConfig = YES;
     NSData *vapcData = [_fileInfo.mp4Parser readDataOfBox:vapc length:vapc.length-8 offset:8];
+    // 以16进制字符串的形式打印dats
+    const unsigned char *dataBuffer = (const unsigned char *)[vapcData bytes];
+    if (!dataBuffer) {
+        VAP_Error(kQGVAPModuleCommon, @"vapcData is empty");
+        return;
+    }
+
+    
+     // 写入到沙盒文件中 测试代码
+     NSUInteger dataLength = [vapcData length];
+     NSMutableString *hexString = [NSMutableString stringWithCapacity:(dataLength * 2)];
+     for (int i = 0; i < dataLength; ++i) {
+         [hexString appendFormat:@"%02x", dataBuffer[i]];
+     }
+     NSString *dataStr = [hexString copy];
+     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+     NSString *filePath = [path stringByAppendingPathComponent:@"vapc.txt"];
+     [dataStr writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+     
+    
+    
     NSError *error = nil;
     NSDictionary *configDictionary = [NSJSONSerialization JSONObjectWithData:vapcData options:kNilOptions error:&error];
     if (error) {

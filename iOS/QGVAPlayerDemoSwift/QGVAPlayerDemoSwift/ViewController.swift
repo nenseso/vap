@@ -14,6 +14,7 @@
 // limitations under the License.
 
 import UIKit
+import Inject
 
 class ViewController: UIViewController, HWDMP4PlayDelegate {
     
@@ -27,6 +28,19 @@ class ViewController: UIViewController, HWDMP4PlayDelegate {
         vapButton.setTitle("融合动效（更多示例请查看OC版本）", for: UIControl.State.normal)
         vapButton.addTarget(self, action: #selector(playVapx), for: UIControl.Event.touchUpInside)
         self.view.addSubview(vapButton)
+        
+        let btn = UIButton()
+        btn.frame = CGRect(x: 0, y: 200, width: self.view.frame.width, height: 120)
+        btn.backgroundColor = UIColor.lightGray
+        btn.setTitle("开始播放", for: UIControl.State.normal)
+        btn.addTarget(self, action: #selector(showTestVC), for: UIControl.Event.touchUpInside)
+        self.view.addSubview(btn)
+    }
+    
+    @objc func showTestVC() {
+        let testVC = Inject.ViewControllerHost(TestViewController())
+        testVC.modalPresentationStyle = .fullScreen
+        self.present(testVC, animated: true)
     }
     
     @objc func playVapx() {

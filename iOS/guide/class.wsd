@@ -1,0 +1,103 @@
+@startuml VAP iOS Implementation
+
+' 核心播放器组件
+class QGVAPlayer {
+  - QGVAPConfigManager* _configManager
+  - QGAnimatedImageDecodeManager* _decodeManager
+  + - (void)play
+  + - (void)stop
+  + - (void)pause
+  + - (void)resume
+}
+
+' 视图组件
+class QGVAPWrapView {
+  - QGVAPlayer* _player
+  - UIView* _contentView
+  + - (void)displayFrame:(UIImage*)frame
+  + - (void)updateAlpha:(CGFloat)alpha
+}
+
+' 解码相关
+abstract class QGBaseDecoder {
+  - QGBaseDFileInfo* _fileInfo
+  - NSInteger _currentDecodeFrame
+  + {abstract} - (BOOL)shouldStopDecode:(NSInteger)nextFrameIndex
+  + {abstract} - (BOOL)isFrameIndexBeyondEnd:(NSInteger)frameIndex
+  + {abstract} - (void)decodeFrame:(NSInteger)frameIndex buffers:(NSMutableArray*)buffers
+}
+
+class QGMP4FrameHWDecoder {
+  - AVAssetReader* _assetReader
+  - AVAssetReaderTrackOutput* _videoTrackOutput
+  + - (void)decodeFrame:(NSInteger)frameIndex buffers:(NSMutableArray*)buffers
+}
+
+' 解码管理
+class QGAnimatedImageDecodeManager {
+  - QGAnimatedImageDecodeThreadPool* _threadPool
+  - QGAnimatedImageBufferManager* _bufferManager
+  - QGBaseDecoder* _decoder
+  + - (void)startDecode
+  + - (void)stopDecode
+  + - (void)seekToFrame:(NSInteger)frameIndex
+}
+
+' 线程管理
+class QGAnimatedImageDecodeThreadPool {
+  - NSMutableArray* _threads
+  - NSMutableArray* _tasks
+  + - (void)addTask:(QGAnimatedImageDecodeTask*)task
+  + - (void)cancelAllTasks
+}
+
+class QGAnimatedImageDecodeThread {
+  - NSThread* _thread
+  - BOOL _isRunning
+  + - (void)start
+  + - (void)stop
+}
+
+' 缓冲管理
+class QGAnimatedImageBufferManager {
+  - NSMutableArray* _buffers
+  - NSInteger _maxBufferCount
+  + - (void)addBuffer:(id)buffer
+  + - (void)clearBuffers
+  + - (id)getBufferAtIndex:(NSInteger)index
+}
+
+' 配置管理
+class QGVAPConfigManager {
+  - QGAnimatedImageDecodeConfig* _decodeConfig
+  + + (instancetype)sharedInstance
+  + - (void)updateConfig:(QGAnimatedImageDecodeConfig*)config
+}
+
+class QGAnimatedImageDecodeConfig {
+  - NSInteger _maxBufferCount
+  - NSInteger _threadCount
+  - BOOL _enableHardwareDecode
+}
+
+' 文件信息
+class QGBaseDFileInfo {
+  - NSString* _filePath
+  - NSInteger _frameCount
+  - NSInteger _occupiedCount
+  + - (void)release
+}
+
+' 关系定义
+QGBaseDecoder <|-- QGMP4FrameHWDecoder
+QGVAPlayer *-- QGVAPConfigManager
+QGVAPlayer *-- QGAnimatedImageDecodeManager
+QGVAPWrapView *-- QGVAPlayer
+QGAnimatedImageDecodeManager *-- QGAnimatedImageDecodeThreadPool
+QGAnimatedImageDecodeManager *-- QGAnimatedImageBufferManager
+QGAnimatedImageDecodeManager *-- QGBaseDecoder
+QGAnimatedImageDecodeThreadPool *-- QGAnimatedImageDecodeThread
+QGVAPConfigManager *-- QGAnimatedImageDecodeConfig
+QGBaseDecoder *-- QGBaseDFileInfo
+
+@enduml

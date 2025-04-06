@@ -16,6 +16,7 @@
 #import "ViewController.h"
 #import "UIView+VAP.h"
 #import "QGVAPWrapView.h"
+#import "TestViewController.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -72,9 +73,20 @@ void qg_VAP_Logger_handler(VAPLogLevel level, const char* file, int line, const 
     //使用WrapView，支持ContentMode
     _vapWrapViewButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_vapxButton.frame)+60, CGRectGetWidth(self.view.frame), 90)];
     _vapWrapViewButton.backgroundColor = [UIColor lightGrayColor];
-    [_vapWrapViewButton setTitle:@"WrapView-ContentMode" forState:UIControlStateNormal];
+    [_vapWrapViewButton setTitle:@"WrapView-ContentMode1234" forState:UIControlStateNormal];
     [_vapWrapViewButton addTarget:self action:@selector(playVapWithWrapView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_vapWrapViewButton];
+    
+    UIButton* btn = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_vapWrapViewButton.frame)+60, CGRectGetWidth(self.view.frame), 90)];
+    btn.backgroundColor = [UIColor lightGrayColor];
+    [btn setTitle:@"WrapView-ContentMode" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(toTestVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+- (void)toTestVC {
+    TestViewController *vc = [[TestViewController alloc] init];
+    [self presentModalViewController:vc animated:YES];
 }
 
 - (void)setupAudioSession {
@@ -87,6 +99,12 @@ void qg_VAP_Logger_handler(VAPLogLevel level, const char* file, int line, const 
     if (![avsession setActive:YES error:&error]) {
         if (error) NSLog(@"AVAudioSession setActive failed : %ld, %s", (long)error.code, [error.localizedDescription UTF8String]);
     }
+}
+
+- (void)injected {
+#ifdef DEBUG
+    [self viewDidLoad];
+#endif
 }
 
 #pragma mark - 各种类型的播放

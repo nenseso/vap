@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09589E8B2DA2425A003A117B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09589E8A2DA2425A003A117B /* TestViewController.swift */; };
+		09589E8F2DA242C4003A117B /* Inject in Frameworks */ = {isa = PBXBuildFile; productRef = 09589E8E2DA242C4003A117B /* Inject */; };
 		BA964B7526832138003265F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA964B7426832138003265F2 /* AppDelegate.swift */; };
 		BA964B7726832138003265F2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA964B7626832138003265F2 /* SceneDelegate.swift */; };
 		BA964B7926832138003265F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA964B7826832138003265F2 /* ViewController.swift */; };
@@ -57,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		09589E8A2DA2425A003A117B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		BA964B7126832138003265F2 /* QGVAPlayerDemoSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QGVAPlayerDemoSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA964B7426832138003265F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA964B7626832138003265F2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA964B982683237E003265F2 /* QGVAPlayer.framework in Frameworks */,
+				09589E8F2DA242C4003A117B /* Inject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +111,7 @@
 				BA964B7426832138003265F2 /* AppDelegate.swift */,
 				BA964B7626832138003265F2 /* SceneDelegate.swift */,
 				BA964B7826832138003265F2 /* ViewController.swift */,
+				09589E8A2DA2425A003A117B /* TestViewController.swift */,
 				BA964B7A26832138003265F2 /* Main.storyboard */,
 				BA964B7D2683213A003265F2 /* Assets.xcassets */,
 				BA964B7F2683213A003265F2 /* LaunchScreen.storyboard */,
@@ -143,6 +148,7 @@
 				BA964B6E26832138003265F2 /* Frameworks */,
 				BA964B6F26832138003265F2 /* Resources */,
 				BA964B9A2683237E003265F2 /* Embed Frameworks */,
+				09589EEA2DA25D25003A117B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -177,6 +183,9 @@
 				Base,
 			);
 			mainGroup = BA964B6826832138003265F2;
+			packageReferences = (
+				09589E8D2DA242C4003A117B /* XCRemoteSwiftPackageReference "Inject" */,
+			);
 			productRefGroup = BA964B7226832138003265F2 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -223,6 +232,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09589EEA2DA25D25003A117B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nRESOURCES=/Applications/InjectionIII.app/Contents/Resources\nif [ -f \"$RESOURCES/copy_bundle.sh\" ]; then\n    \"$RESOURCES/copy_bundle.sh\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BA964B6D26832138003265F2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -230,6 +259,7 @@
 			files = (
 				BA964B7926832138003265F2 /* ViewController.swift in Sources */,
 				BA964B7526832138003265F2 /* AppDelegate.swift in Sources */,
+				09589E8B2DA2425A003A117B /* TestViewController.swift in Sources */,
 				BA964B7726832138003265F2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,11 +418,16 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2AUB8578JK;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../QGVAPlayer/QGVAPlayer/**";
 				INFOPLIST_FILE = QGVAPlayerDemoSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.QGVAPlayerDemoSwift456;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +446,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2AUB8578JK;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/../QGVAPlayer/QGVAPlayer/**";
 				INFOPLIST_FILE = QGVAPlayerDemoSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -448,6 +484,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09589E8D2DA242C4003A117B /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09589E8E2DA242C4003A117B /* Inject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09589E8D2DA242C4003A117B /* XCRemoteSwiftPackageReference "Inject" */;
+			productName = Inject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BA964B6926832138003265F2 /* Project object */;
 }
